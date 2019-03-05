@@ -1,6 +1,6 @@
 package com.imooc.dao;
 
-import com.imooc.dataobject.ProductCategory;
+import com.imooc.entity.ProductCategory;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

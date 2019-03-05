@@ -1,6 +1,6 @@
 package com.imooc.service.impl;
 
-import com.imooc.dataobject.ProductInfo;
+import com.imooc.entity.ProductInfo;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

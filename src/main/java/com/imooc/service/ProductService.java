@@ -1,6 +1,6 @@
 package com.imooc.service;
 
-import com.imooc.dataobject.ProductInfo;
+import com.imooc.entity.ProductInfo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
