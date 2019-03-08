@@ -3,7 +3,6 @@ package com.imooc.dto;
 import com.imooc.entity.OrderDetail;
 import lombok.Data;
 
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;

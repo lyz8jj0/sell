@@ -1,7 +1,10 @@
 package com.imooc.service.impl;
 
+import com.imooc.dao.OrderMasterDao;
 import com.imooc.dto.OrderDTO;
 import com.imooc.entity.OrderDetail;
+import com.imooc.entity.OrderMaster;
+import com.imooc.enums.OrderStatusEnum;
 import com.imooc.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -9,8 +12,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,10 +74,18 @@ public class OrderServiceImpTest {
 
     @Test
     public void findList() {
+        PageRequest request = new PageRequest(0,2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(BUYER_OPENID, request);
+        Assert.assertNotEquals(0,orderDTOPage.getTotalElements());
     }
 
     @Test
     public void cancel() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.cancel(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(),result.getOrderStatus());
+//        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
+
     }
 
     @Test
