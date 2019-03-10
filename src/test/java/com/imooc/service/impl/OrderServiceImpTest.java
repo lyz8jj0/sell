@@ -4,6 +4,7 @@ import com.imooc.dao.OrderMasterDao;
 import com.imooc.dto.OrderDTO;
 import com.imooc.entity.OrderDetail;
 import com.imooc.entity.OrderMaster;
+import com.imooc.entity.PayStatusEnum;
 import com.imooc.enums.OrderStatusEnum;
 import com.imooc.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -68,31 +69,36 @@ public class OrderServiceImpTest {
     @Test
     public void findOne() {
         OrderDTO result = orderService.findOne(ORDER_ID);
-        log.info("[查询单个订单] result={}",result);
-        Assert.assertEquals(ORDER_ID,result.getOrderId());
+        log.info("[查询单个订单] result={}", result);
+        Assert.assertEquals(ORDER_ID, result.getOrderId());
     }
 
     @Test
     public void findList() {
-        PageRequest request = new PageRequest(0,2);
+        PageRequest request = new PageRequest(0, 2);
         Page<OrderDTO> orderDTOPage = orderService.findList(BUYER_OPENID, request);
-        Assert.assertNotEquals(0,orderDTOPage.getTotalElements());
+        Assert.assertNotEquals(0, orderDTOPage.getTotalElements());
     }
 
     @Test
     public void cancel() {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.cancel(orderDTO);
-        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(),result.getOrderStatus());
+        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
 //        Assert.assertEquals(OrderStatusEnum.CANCEL.getCode(), result.getOrderStatus());
 
     }
 
     @Test
     public void finish() {
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.finish(orderDTO);
+        Assert.assertEquals(OrderStatusEnum.FINISHED.getCode(), result.getOrderStatus());
     }
 
     @Test
     public void paid() {
-    }
+        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
+        OrderDTO result = orderService.paid(orderDTO);
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());    }
 }
