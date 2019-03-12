@@ -2,6 +2,7 @@ package com.imooc.utils;
 
 import com.imooc.VO.ResultVO;
 
+
 public class ResultVOUtil {
 
     public static ResultVO success(Object object) {
