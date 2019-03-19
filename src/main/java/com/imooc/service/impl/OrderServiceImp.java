@@ -7,15 +7,14 @@ import com.imooc.dto.CartDTO;
 import com.imooc.dto.OrderDTO;
 import com.imooc.entity.OrderDetail;
 import com.imooc.entity.OrderMaster;
-import com.imooc.entity.PayStatusEnum;
 import com.imooc.entity.ProductInfo;
 import com.imooc.enums.OrderStatusEnum;
+import com.imooc.enums.PayStatusEnum;
 import com.imooc.enums.ResultEnum;
 import com.imooc.exception.SellException;
 import com.imooc.service.OrderService;
 import com.imooc.service.ProductService;
 import com.imooc.utils.KeyUtil;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -203,5 +202,17 @@ public class OrderServiceImp implements OrderService {
             log.error("[订单支付完成] 更新失败,orderMaster={}", orderMaster);
         }
         return orderDTO;
+    }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage = orderMasterDao.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+
+        return new PageImpl<>(orderDTOList, pageable, orderMasterPage.getTotalElements());
+    }
+
+    public static void main(String[] args) {
+        System.out.println();
     }
 }

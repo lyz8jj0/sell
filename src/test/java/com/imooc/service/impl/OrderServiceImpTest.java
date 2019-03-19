@@ -1,11 +1,9 @@
 package com.imooc.service.impl;
 
-import com.imooc.dao.OrderMasterDao;
 import com.imooc.dto.OrderDTO;
 import com.imooc.entity.OrderDetail;
-import com.imooc.entity.OrderMaster;
-import com.imooc.entity.PayStatusEnum;
 import com.imooc.enums.OrderStatusEnum;
+import com.imooc.enums.PayStatusEnum;
 import com.imooc.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
@@ -17,11 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by 李新宇
@@ -100,5 +95,15 @@ public class OrderServiceImpTest {
     public void paid() {
         OrderDTO orderDTO = orderService.findOne(ORDER_ID);
         OrderDTO result = orderService.paid(orderDTO);
-        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());    }
+        Assert.assertEquals(PayStatusEnum.SUCCESS.getCode(), result.getPayStatus());
+    }
+
+    @Test
+    public void list(){
+        PageRequest request = new PageRequest(0, 2);
+        Page<OrderDTO> orderDTOPage = orderService.findList(request);
+//        Assert.assertNotEquals(0,orderDTOPage.getTotalElements());
+        Assert.assertTrue("查询所的订单列表",orderDTOPage.getTotalElements()>0);
+
+    }
 }

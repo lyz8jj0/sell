@@ -1,13 +1,18 @@
-package com.imooc.entity;
+package com.imooc.enums;
 
 import lombok.Getter;
 
+/**
+ * Created by 李新宇
+ * 2019-03-19 23:19
+ */
 @Getter
-public enum PayStatusEnum {
+public enum PayStatusEnum implements CodeEnum {
 
     WAIT(0, "等待支付"),
 
     SUCCESS(1, "支付成功"),
+
     ;
 
     private Integer code;
@@ -19,4 +24,3 @@ public enum PayStatusEnum {
         this.message = message;
     }
 }
-
