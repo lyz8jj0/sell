@@ -1,4 +1,4 @@
-package com.imooc.utils.serializer;
+package com.imooc.utils.Serializer;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
