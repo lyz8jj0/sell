@@ -36,6 +36,7 @@
                         <td>${productInfo.productPrice}</td>
                         <td>${productInfo.productStock}</td>
                         <td>${productInfo.productDescription}</td>
+                        <td>${productInfo.categoryType}</td>
                         <td>${productInfo.createTime}</td>
                         <td>${productInfo.updateTime}</td>
                         <td><a href="/sell/seller/product/index?productId=${productInfo.productId}">修改</a></td>
