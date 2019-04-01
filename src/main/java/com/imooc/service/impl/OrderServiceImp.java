@@ -14,6 +14,7 @@ import com.imooc.enums.ResultEnum;
 import com.imooc.exception.SellException;
 import com.imooc.service.OrderService;
 import com.imooc.service.ProductService;
+import com.imooc.service.PushMessageService;
 import com.imooc.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -42,6 +43,9 @@ public class OrderServiceImp implements OrderService {
 
     @Autowired
     private OrderMasterDao orderMasterDao;
+
+    @Autowired
+    private PushMessageService pushMessageService;
 
     @Override
     public OrderDTO create(OrderDTO orderDTO) {
@@ -174,6 +178,9 @@ public class OrderServiceImp implements OrderService {
             log.error("[完结订单] 更新失败, orderMaster={}", orderMaster);
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
+
+        //推送微信模版消息
+//        pushMessageService.orderStatus(orderDTO);
 
         return orderDTO;
     }
