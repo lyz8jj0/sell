@@ -1,0 +1,39 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    url: jdbc:mysql://127.0.0.1:3306/sell?characterEncoding=utf-8&useSSL=false
+    password: 123456
+  jpa:
+    show-sql: true
+  redis:
+    host: localhost
+    port: 6379
+
+#  jackson:
+#    default-property-inclusion: non_null
+
+
+server:
+  context-path: /sell
+
+wechat:
+  myAppId: wx4774076872e773f4
+  myAppSecret: 65bb251b16b14dbc638ccfe47b908920
+  openAppId: 123456789
+  openAppSeret: 123456789
+  mchId: 123456789
+  mchPath: /var/wexin_cert/h5.p12
+  notifyUrl: http://lxysell.natapp1.cc/sell/pay/notify
+  templateId:
+    orderStatus: 123456789
+
+projectUrl:
+  weChatMpAuthorize: http://lxysell.natapp1.cc
+  weChatOpenAuthorize: http://lxysell.natapp1.cc
+  sell: http://lxysell.natapp1.cc
+logging:
+  level:
+    com.imooc.dao.mapper: trace
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
