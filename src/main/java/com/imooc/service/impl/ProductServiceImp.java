@@ -8,6 +8,10 @@ import com.imooc.enums.ResultEnum;
 import com.imooc.exception.SellException;
 import com.imooc.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,12 +20,14 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+//@CacheConfig(cacheNames = "product")
 public class ProductServiceImp implements ProductService {
 
     @Autowired
     private ProductInfoDao productInfoDao;
 
     @Override
+//    @Cacheable(key = "123")
     public ProductInfo findOne(String productId) {
         return productInfoDao.findOne(productId);
     }
@@ -37,6 +43,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
+//    @CachePut(key = "123")
     public ProductInfo save(ProductInfo productInfo) {
         return productInfoDao.save(productInfo);
     }
