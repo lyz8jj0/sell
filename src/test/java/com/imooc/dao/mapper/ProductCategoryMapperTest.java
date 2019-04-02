@@ -63,6 +63,11 @@ public class ProductCategoryMapperTest {
     }
 
     @Test
+    public void name() {
+
+    }
+
+    @Test
     public void updateByCategoryObject() {
         ProductCategory productCategory = new ProductCategory();
         productCategory.setCategoryName("师兄最不爱");
