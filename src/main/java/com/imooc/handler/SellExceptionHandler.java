@@ -1,4 +1,4 @@
-package com.handler;
+package com.imooc.handler;
 
 import com.imooc.VO.ResultVO;
 import com.imooc.config.ProjectUrlConfig;
