@@ -11,6 +11,7 @@ import com.imooc.entity.ProductInfo;
 import com.imooc.enums.OrderStatusEnum;
 import com.imooc.enums.PayStatusEnum;
 import com.imooc.enums.ResultEnum;
+import com.imooc.exception.ResponseBankException;
 import com.imooc.exception.SellException;
 import com.imooc.service.OrderService;
 import com.imooc.service.ProductService;
@@ -64,6 +65,7 @@ public class OrderServiceImp implements OrderService {
         for (OrderDetail orderDetail : orderDTO.getOrderDetailList()) {
             ProductInfo productInfo = productService.findOne(orderDetail.getProductId());
             if (productInfo == null) {
+//                throw new ResponseBankException();
                 throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
             }
 

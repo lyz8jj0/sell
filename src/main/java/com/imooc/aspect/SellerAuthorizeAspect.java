@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletRequest;
  * Created by 李新宇
  * 2019-04-01 18:58
  */
-//@Aspect
-//@Component
+@Aspect
+@Component
 @Slf4j
 public class SellerAuthorizeAspect {
 
@@ -41,19 +41,19 @@ public class SellerAuthorizeAspect {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
 
-        //查询cookie
-        Cookie cookie = CookieUtil.get(request, CookieConstant.TOKEN);
-        if (cookie == null) {
-            log.warn("[登录校验] Cookie中查不到token");
-            throw new SellerAuthorizeException();
-        }
-
-        //去redis里查询
-        String tokenValue = redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
-        if(StringUtils.isEmpty(tokenValue)){
-            log.warn("[登录校验] Redis中查不到token");
-            throw new SellerAuthorizeException();
-        }
+//        //查询cookie
+//        Cookie cookie = CookieUtil.get(request, CookieConstant.TOKEN);
+//        if (cookie == null) {
+//            log.warn("[登录校验] Cookie中查不到token");
+//            throw new SellerAuthorizeException();
+//        }
+//
+//        //去redis里查询
+//        String tokenValue = redisTemplate.opsForValue().get(String.format(RedisConstant.TOKEN_PREFIX, cookie.getValue()));
+//        if(StringUtils.isEmpty(tokenValue)){
+//            log.warn("[登录校验] Redis中查不到token");
+//            throw new SellerAuthorizeException();
+//        }
 
     }
 
