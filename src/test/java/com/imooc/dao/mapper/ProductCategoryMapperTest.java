@@ -69,4 +69,11 @@ public class ProductCategoryMapperTest {
         productCategory.setCategoryType(102);
         categoryMapper.updateByCategoryObject(productCategory);
     }
+
+    @Test
+    public void selectByCategoryType() {
+        ProductCategory productCategory = categoryMapper.selectByCategoryType(101);
+        Assert.assertNotNull(productCategory);
+    }
+
 }
